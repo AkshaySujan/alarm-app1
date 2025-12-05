@@ -15,3 +15,8 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+# replace frontend-specific copies with context-local copies
+(Get-Content frontend/Dockerfile -Raw) `
+  -replace 'COPY frontend/package\*\.json ./', 'COPY package*.json ./' `
+  -replace 'COPY frontend/ ./', 'COPY . ./' `
+  | Set-Content frontend/Dockerfile -Encoding UTF8
