@@ -1,23 +1,18 @@
 ﻿services:
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
-    image: alarm-backend:local
-    container_name: alarm-backend
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
       - "3000:4000"
-    environment:
-      - NODE_ENV=production
+    restart: unless-stopped
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    image: alarm-frontend:local
-    container_name: alarm-frontend
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
-      - "8081:80"
+      - "8080:80"
     depends_on:
       - backend
-
+    restart: unless-stopped

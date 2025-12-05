@@ -2,13 +2,12 @@
 
 WORKDIR /app
 
-# Copy only package files first
-COPY package*.json ./
-
+# Install dependencies first
+COPY backend/package*.json ./
 RUN npm ci --omit=dev
 
-# Copy the rest of the backend code
-COPY . .
+# Copy backend source
+COPY backend/ ./
 
 EXPOSE 4000
 
