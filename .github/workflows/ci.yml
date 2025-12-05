@@ -51,7 +51,7 @@ jobs:
 
       - name: Wait for backend HTTP to become healthy
         run: |
-          URL="http://localhost:4000/api/alarms"
+          URL="http://localhost:3000/api/alarms"
           echo "Waiting for $URL to respond (timeout ~60s)..."
           for i in $(seq 1 30); do
             if curl -sSf "$URL" > /dev/null 2>&1; then
@@ -70,7 +70,7 @@ jobs:
 
       - name: Run API smoke tests (GET + POST)
         env:
-          URL_BASE: "http://localhost:4000"
+          URL_BASE: "http://localhost:3000"
         run: |
           set -e
           echo "GET /api/alarms"
@@ -99,3 +99,4 @@ jobs:
         if: always()
         run: |
           docker compose down --volumes --remove-orphans
+
