@@ -1,7 +1,10 @@
 ﻿version: "3.8"
 
 services:
-  backend:`n  build:`n    context: ./backend`n    dockerfile: Dockerfile
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     image: alarm-backend:local
     container_name: alarm-backend
     ports:
@@ -10,11 +13,12 @@ services:
       - NODE_ENV=production
 
   frontend:
-    build:`n      context: ./frontend`n      dockerfile: Dockerfile
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     image: alarm-frontend:local
     container_name: alarm-frontend
     ports:
       - "8081:80"
     depends_on:
       - backend
-
