@@ -1,6 +1,4 @@
-﻿version: "3.8"
-
-services:
+﻿services:
   backend:
     build:
       context: ./backend
@@ -22,3 +20,4 @@ services:
       - "8081:80"
     depends_on:
       - backend
+
